@@ -12,6 +12,8 @@ import { Button, CardActionArea, CardActions } from "@mui/material";
 import Header from "../Components/Header";
 import CloudUploadIcon from "@mui/icons-material/CloudUpload";
 import Avatar from "@mui/material/Avatar";
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
+
 
 import IconButton from "@mui/material/IconButton";
 import SearchIcon from "@mui/icons-material/Search";
@@ -109,206 +111,213 @@ function ImageSearch() {
   };
 
   return (
-    <div>
+    <>
+       {localStorage.getItem("email")?  <div>
+    <Card
+      sx={{ maxWidth: 1200 }}
+      style={{
+        margin: "80px auto",
+        borderRadius: "15px",
+        boxShadow: "0 0 8px",
+      }}
+    >
+      <Row>
+        <Col xs="12" md="8" style={{ textAlign: "center", padding: "20px" }}>
+          <h3 style={{ fontFamily: "fantasy" }}>Search By Image</h3>
+
+          <div
+            style={{
+              minHeight: "200px",
+              maxHeigth: "200px",
+              maxWidth: "200px",
+              margin: "0px auto",
+              marginTop: "20px",
+            }}
+          >
+            <img
+              class="img-size"
+              src={queryImage ? queryImage : noImage}
+              alt="No image"
+            />
+          </div>
+
+          <label htmlFor="contained-button-file">
+            <Input
+              accept="image/"
+              id="contained-button-file"
+              multiple
+              type="file"
+              onChange={onImageChange}
+            />
+            <Button
+              variant="contained"
+              component="span"
+              startIcon={<CloudUploadIcon />}
+              style={{ background: "#154360" }}
+            >
+              Upload
+            </Button>
+          </label>
+
+          <br></br>
+          <br></br>
+          <IconButton
+            style={{ background: "#154360" }}
+            onClick={setImageAction}
+          >
+            <SearchIcon style={{ color: "white" }} />
+          </IconButton>
+          <br></br>
+          <br></br>
+        </Col>
+        <Col xs="12" md="4" style={{ background: "#154360" }}>
+          <div className="sip">
+            <h1
+              className="colh "
+              style={{ fontSize: "30px", textAlign: "center" }}
+            >
+              About Image Search
+            </h1>
+            <h3 className="colh textsg">
+              Image Based search provides you a great ease.You just need to
+              upload the image of product we and we will suggest you the
+              products most similar to it
+            </h3>
+          </div>
+        </Col>
+      </Row>
+    </Card>
+
+      
+    {casualShirts.length > 0 ? (
       <Card
         sx={{ maxWidth: 1200 }}
         style={{
           margin: "80px auto",
           borderRadius: "15px",
-          boxShadow: "0 0 8px",
+          boxShadow: "0 0 10px",
         }}
       >
         <Row>
-          <Col xs="12" md="8" style={{ textAlign: "center", padding: "20px" }}>
-            <h3 style={{ fontFamily: "fantasy" }}>Search By Image</h3>
+          <Col
+            xs="12"
+            md="12"
+            style={{
+              textAlign: "center",
+              padding: "20px",
+              backgroundColor: "#154360",
+            }}
+          >
+            <h3 style={{ fontFamily: "fantasy", color: "white" }}>
+              Search Results
+            </h3>
+            <CardContent style={{ padding: "20px" }}>
+              <Row>
+                {casualShirts ? (
+                  casualShirts.length > 0 ? (
+                    casualShirts.map((suggestedProducts) => (
+                      <Col lg="3" md="3" sm="4" xs="6">
+                        <Card
+                          className="cradTransformation"
+                          style={{ boxShadow: "0 0 10px" }}
+                        >
+                          <CardMedia className="itemCardImageDiv">
+                            <img
+                              src={Demo}
+                              alt="No image"
+                              className="img-fluid"
+                              style={{ height: "300px" }}
+                            />
+                          </CardMedia>
 
-            <div
-              style={{
-                minHeight: "200px",
-                maxHeigth: "200px",
-                maxWidth: "200px",
-                margin: "0px auto",
-                marginTop: "20px",
-              }}
-            >
-              <img
-                class="img-size"
-                src={queryImage ? queryImage : noImage}
-                alt="No image"
-              />
-            </div>
+                          <CardContent
+                            style={{
+                              marginTop: "-9px",
+                              backgroundColor: "#FBFCFC",
+                              minHeight: "100px",
+                            }}
+                          >
+                            <h
+                              style={{
+                                fontFamily: "Georgia",
+                                fontWeight: "500",
+                                fontSize: "18",
+                                marginLeft: "-4px",
+                              }}
+                            >
+                              {suggestedProducts.title}{" "}
+                            </h>
+                            <h6
+                              style={{ color: "#3498DB", marginTop: "4px" }}
+                            >
+                              {" "}
+                              Rs: {suggestedProducts.price}{" "}
+                            </h6>
+                            <a
+                              style={{ color: "#3498DB", marginTop: "4px" }}
+                              href={suggestedProducts.productLink}
+                              target="_blank"
+                            >
+                              See Details{" "}
+                            </a>
+                          </CardContent>
+                        </Card>
+                      </Col>
+                    ))
+                  ) : (
+                    <strong>Loading Page Please Wait</strong>
+                  )
+                ) : (
+                  "Data not Found"
+                )}
+              </Row>
+            </CardContent>
 
-            <label htmlFor="contained-button-file">
-              <Input
-                accept="image/"
-                id="contained-button-file"
-                multiple
-                type="file"
-                onChange={onImageChange}
-              />
-              <Button
-                variant="contained"
-                component="span"
-                startIcon={<CloudUploadIcon />}
-                style={{ background: "#154360" }}
-              >
-                Upload
-              </Button>
-            </label>
-
             <br></br>
             <br></br>
-            <IconButton
-              style={{ background: "#154360" }}
-              onClick={setImageAction}
-            >
-              <SearchIcon style={{ color: "white" }} />
-            </IconButton>
             <br></br>
-            <br></br>
-          </Col>
-          <Col xs="12" md="4" style={{ background: "#154360" }}>
-            <div className="sip">
-              <h1
-                className="colh "
-                style={{ fontSize: "30px", textAlign: "center" }}
-              >
-                About Image Search
-              </h1>
-              <h3 className="colh textsg">
-                Image Based search provides you a great ease.You just need to
-                upload the image of product we and we will suggest you the
-                products most similar to it
-              </h3>
-            </div>
           </Col>
         </Row>
       </Card>
+    ) : (
+      ""
+    )}
 
-        
-      {casualShirts.length > 0 ? (
-        <Card
-          sx={{ maxWidth: 1200 }}
-          style={{
-            margin: "80px auto",
-            borderRadius: "15px",
-            boxShadow: "0 0 10px",
-          }}
-        >
-          <Row>
-            <Col
-              xs="12"
-              md="12"
-              style={{
-                textAlign: "center",
-                padding: "20px",
-                backgroundColor: "#154360",
-              }}
-            >
-              <h3 style={{ fontFamily: "fantasy", color: "white" }}>
-                Search Results
-              </h3>
-              <CardContent style={{ padding: "20px" }}>
-                <Row>
-                  {casualShirts ? (
-                    casualShirts.length > 0 ? (
-                      casualShirts.map((suggestedProducts) => (
-                        <Col lg="3" md="3" sm="4" xs="6">
-                          <Card
-                            className="cradTransformation"
-                            style={{ boxShadow: "0 0 10px" }}
-                          >
-                            <CardMedia className="itemCardImageDiv">
-                              <img
-                                src={Demo}
-                                alt="No image"
-                                className="img-fluid"
-                                style={{ height: "300px" }}
-                              />
-                            </CardMedia>
+    <section>
+      {/* <div className="container"  style={{backgroundColor:"red"}}>
+ <div className="row"  style={{backgroundColor:"red"}}>
+   This is the casual shirt section 
+   {casualShirts.map((suggestedProducts) => {
+     return (
+       <div className="box col-lg-3 col-sm-6">
+         <div className="shop-item">
+           <img src={suggestedProducts.imageLink} alt="" />
+          
+         
+           <h3>{suggestedProducts.title}</h3>
+           <h6>{suggestedProducts.price}</h6>
 
-                            <CardContent
-                              style={{
-                                marginTop: "-9px",
-                                backgroundColor: "#FBFCFC",
-                                minHeight: "100px",
-                              }}
-                            >
-                              <h
-                                style={{
-                                  fontFamily: "Georgia",
-                                  fontWeight: "500",
-                                  fontSize: "18",
-                                  marginLeft: "-4px",
-                                }}
-                              >
-                                {suggestedProducts.title}{" "}
-                              </h>
-                              <h6
-                                style={{ color: "#3498DB", marginTop: "4px" }}
-                              >
-                                {" "}
-                                Rs: {suggestedProducts.price}{" "}
-                              </h6>
-                              <a
-                                style={{ color: "#3498DB", marginTop: "4px" }}
-                                href={suggestedProducts.productLink}
-                                target="_blank"
-                              >
-                                See Details{" "}
-                              </a>
-                            </CardContent>
-                          </Card>
-                        </Col>
-                      ))
-                    ) : (
-                      <strong>Loading Page Please Wait</strong>
-                    )
-                  ) : (
-                    "Data not Found"
-                  )}
-                </Row>
-              </CardContent>
-
-              <br></br>
-              <br></br>
-              <br></br>
-            </Col>
-          </Row>
-        </Card>
-      ) : (
-        ""
-      )}
-
-      <section>
-        {/* <div className="container"  style={{backgroundColor:"red"}}>
-   <div className="row"  style={{backgroundColor:"red"}}>
-     This is the casual shirt section 
-     {casualShirts.map((suggestedProducts) => {
-       return (
-         <div className="box col-lg-3 col-sm-6">
-           <div className="shop-item">
-             <img src={suggestedProducts.imageLink} alt="" />
-            
-           
-             <h3>{suggestedProducts.title}</h3>
-             <h6>{suggestedProducts.price}</h6>
-
-             <a
-               href={suggestedProducts.productLink}
-               className="add-card"
-               target="_blank"
-             >
-               See Details
-             </a>
-           </div>
+           <a
+             href={suggestedProducts.productLink}
+             className="add-card"
+             target="_blank"
+           >
+             See Details
+           </a>
          </div>
-       );
-     })}
-   </div>
- </div> */}
-      </section>
-    </div>
+       </div>
+     );
+   })}
+ </div>
+</div> */}
+    </section>
+  </div>:
+  <Redirect from="/profile" to="login" />
+}
+    
+    </>
+ 
+  
   );
 }
 

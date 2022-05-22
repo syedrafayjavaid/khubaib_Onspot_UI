@@ -11,6 +11,7 @@ import CardMedia from "@mui/material/CardMedia";
 import CardBody from "@mui/material/CardContent";
 import Portfolio from "../pages/Products";
 import Products from "./Products"
+import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 import HeartBrokenIcon from '@mui/icons-material/HeartBroken';
 
 
@@ -73,7 +74,9 @@ function Favourite() {
   
   return (
     <>
-    {console.log("products data is set to",products)}
+    {localStorage.getItem("email")?
+    <div>
+          
     {products.length > 0 ? (
         <Card
           sx={{ maxWidth: 1200 }}
@@ -180,6 +183,16 @@ function Favourite() {
       ) : (
         ""
       )}
+
+
+    </div>
+
+      :
+
+  <Redirect from="/profile" to="login" />
+    
+    }
+   
     </>
   );
 }

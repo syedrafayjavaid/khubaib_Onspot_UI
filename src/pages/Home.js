@@ -17,7 +17,7 @@ import Chat from "../Components/Chat";
 import { Row, Col } from "react-bootstrap";
 import { Feedback } from "../Components/Feedback";
 import { MapContainer } from "../Components/MyMap";
-
+import ChatBot from "../Components/ChatBot";
 function Home() {
   const [products, setProducts] = useState([]);
   const [recArray, setRecArray] = useState([]);
@@ -805,6 +805,7 @@ function Home() {
         </Card>
       </section>
       <Feedback />
+      <ChatBot/>
     </div>
   );
 }

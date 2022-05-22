@@ -1,43 +1,21 @@
 import React from "react";
 import { Component, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import axios from "axios";
 import Card from "@mui/material/Card";
-import CardHeader from "@mui/material/CardHeader";
-import CardContent from "@mui/material/CardContent";
-import CardMedia from "@mui/material/CardMedia";
-import Typography from "@mui/material/Typography";
-import Rating from "@mui/material/Rating";
-import { Button, CardActionArea, CardActions } from "@mui/material";
-import Header from "../Components/Header";
-import CloudUploadIcon from "@mui/icons-material/CloudUpload";
-import Avatar from "@mui/material/Avatar";
 
-import IconButton from "@mui/material/IconButton";
-import SearchIcon from "@mui/icons-material/Search";
+import { Button, CardActionArea, CardActions } from "@mui/material";
+
+import Avatar from "@mui/material/Avatar";
 import TextField from "@mui/material/TextField";
 
 import { styled } from "@mui/material/styles";
 import { Col, Row } from "react-bootstrap";
-import { style } from "@mui/system";
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Grid from "@mui/material/Grid";
 import RemoveRedEyeIcon from "@mui/icons-material/RemoveRedEye";
-import Box from "@mui/material/Box";
-
-import Input from "@mui/material/Input";
-import FilledInput from "@mui/material/FilledInput";
-import OutlinedInput from "@mui/material/OutlinedInput";
-import InputLabel from "@mui/material/InputLabel";
-import InputAdornment from "@mui/material/InputAdornment";
-import FormHelperText from "@mui/material/FormHelperText";
-import FormControl from "@mui/material/FormControl";
-
-import Visibility from "@mui/icons-material/Visibility";
-import VisibilityOff from "@mui/icons-material/VisibilityOff";
 import { Redirect } from "react-router-dom/cjs/react-router-dom.min";
 
 const Profile = () => {
